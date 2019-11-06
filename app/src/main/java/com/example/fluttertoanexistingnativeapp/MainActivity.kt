@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +20,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+
         fab.setOnClickListener { view ->
             startActivity(Intent(this,MyFlutterActivity::class.java))
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        flutterView.attachToFlutterEngine((applicationContext as MyApplication).flutterEngine)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
